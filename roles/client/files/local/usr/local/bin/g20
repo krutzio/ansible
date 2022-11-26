@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# support showing differences between to 2 references OR the current HEAD and 1 refeference
+if [ "$2" != "" ]; then
+	BRANCH="$1"
+	GIT_REF="$2"
+else
+	BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+	GIT_REF="$1"
+fi
+
+echo "Showing differences between $BRANCH ('<') and $GIT_REF ('>')"
+git log --left-right --graph --cherry-pick --oneline --no-merges "$BRANCH...$GIT_REF"

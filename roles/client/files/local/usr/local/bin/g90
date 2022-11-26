@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+# shellcheck source=../lib/lib-git.sh
+. /usr/local/lib/gitlib-git.sh
+
+exit_on_protected_branch
+
+COMMIT_MESSAGE="$1"
+if [ "$COMMIT_MESSAGE" = "" ]; then
+	echo "Missing commit message"
+fi
+
+git add -A
+git commit -sm "$COMMIT_MESSAGE"
+git push -u origin "$BRANCH"

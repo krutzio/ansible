@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+# shellcheck source=../lib/lib-git.sh
+. /usr/local/lib/lib-git.sh
+
+exit_on_protected_branch
+
+git add -A
+git commit -sm "Automatically created commit message: edit or squash"
+git push -u origin "$BRANCH"

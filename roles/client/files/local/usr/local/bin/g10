@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ "$1" != "" ]; then
+	BRANCH="$(git remote show origin | awk '/HEAD branch/ {print $NF}')"
+fi
+git checkout "$BRANCH" && git pull

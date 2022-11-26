@@ -1,0 +1,19 @@
+- name: Copy configuration files
+  become: yes
+  copy:
+    src: cfg/
+    dest: /
+    mode: 0644
+  register: cfgfiles
+
+- name: Copy local scripts
+  become: yes
+  copy:
+    src: local/
+    dest: /
+    mode: 0755
+
+- name: Restart docker due to systemd service file
+  become: yes
+  shell: systemctl daemon-reload && systemctl restart docker
+  when: cfgfiles.changed
