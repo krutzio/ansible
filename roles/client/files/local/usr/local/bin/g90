@@ -2,8 +2,8 @@
 
 set -e
 
-# shellcheck source=../lib/lib-git.sh
-. /usr/local/lib/gitlib-git.sh
+# shellcheck source=../lib/libgit.sh
+. /usr/local/lib/libgit.sh
 
 exit_on_protected_branch
 
